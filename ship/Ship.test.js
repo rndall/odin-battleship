@@ -12,5 +12,8 @@ describe("ship", () => {
   test("hit function", () => {
     ship.hit()
     expect(ship.hitCount).toBe(1)
+
+    ship.hit()
+    expect(ship.hitCount).toBe(2)
   })
 })
