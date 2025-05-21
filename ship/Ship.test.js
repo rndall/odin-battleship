@@ -8,4 +8,9 @@ describe("ship", () => {
     expect(ship.hitCount).toBe(0)
     expect(ship.sunk).toBe(false)
   })
+
+  test("hit function", () => {
+    ship.hit()
+    expect(ship.hitCount).toBe(1)
+  })
 })
