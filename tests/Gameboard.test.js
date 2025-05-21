@@ -27,5 +27,14 @@ describe("gameboard", () => {
       expect(gameboard.board[1][0]).toBe(destroyer)
       expect(gameboard.board[2][0]).not.toBe(destroyer)
     })
+
+    test("horizontal", () => {
+      const destroyer = new Ship(2)
+
+      gameboard.placeShip(destroyer, [0, 0], "horizontal")
+      expect(gameboard.board[0][0]).toBe(destroyer)
+      expect(gameboard.board[0][1]).toBe(destroyer)
+      expect(gameboard.board[0][2]).not.toBe(destroyer)
+    })
   })
 })
