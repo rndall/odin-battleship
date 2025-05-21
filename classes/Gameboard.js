@@ -5,8 +5,7 @@ class Gameboard {
       .map(() => Array(10).fill(null))
   }
 
-  placeShip(ship, start, orientation) {
-    const [y, x] = start
+  placeShip(ship, x, y, orientation) {
     const endSquare = y + ship.length
 
     if (orientation === "vertical") {
