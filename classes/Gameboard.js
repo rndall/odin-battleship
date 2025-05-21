@@ -1,6 +1,8 @@
 class Gameboard {
   constructor() {
-    this.board = Array(10).fill(Array(10).fill(null))
+    this.board = Array(10)
+      .fill()
+      .map(() => Array(10).fill(null))
   }
 
   placeShip(ship, start, orientation) {
