@@ -37,4 +37,20 @@ describe("gameboard", () => {
       expect(gameboard.board[0][2]).not.toBe(destroyer)
     })
   })
+
+  describe("receiveAttack function", () => {
+    const destroyer = new Ship(2)
+
+    gameboard.placeShip(destroyer, 0, 0, "vertical")
+
+    test("hit", () => {
+      gameboard.receiveAttack(0, 1)
+      expect(destroyer.hitCount).toBe(1)
+    })
+
+    test("miss", () => {
+      gameboard.receiveAttack(2, 0)
+      expect(gameboard.missedAttacks).toContain([2, 0])
+    })
+  })
 })
