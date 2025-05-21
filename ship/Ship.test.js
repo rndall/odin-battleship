@@ -16,4 +16,9 @@ describe("ship", () => {
     ship.hit()
     expect(ship.hitCount).toBe(2)
   })
+
+  test("isSunk function", () => {
+    ship.isSunk()
+    expect(ship.sunk).toBe(false)
+  })
 })
