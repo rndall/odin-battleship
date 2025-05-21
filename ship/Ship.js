@@ -4,6 +4,10 @@ class Ship {
     this.hitCount = 0
     this.sunk = false
   }
+
+  hit() {
+    this.hitCount += 1
+  }
 }
 
 module.exports = Ship
