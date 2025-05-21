@@ -1,4 +1,4 @@
-const Ship = require("../ship/Ship")
+const Ship = require("../classes/Ship")
 
 describe("ship", () => {
   const ship = new Ship(4)
