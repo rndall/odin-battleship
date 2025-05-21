@@ -8,6 +8,11 @@ class Ship {
   hit() {
     this.hitCount += 1
   }
+
+  isSunk() {
+    if (this.hitCount >= this.length) this.sunk = true
+    return this.sunk
+  }
 }
 
 module.exports = Ship
