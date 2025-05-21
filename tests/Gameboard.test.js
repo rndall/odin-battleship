@@ -1,4 +1,5 @@
 const Gameboard = require("../classes/Gameboard")
+const Ship = require("../classes/Ship")
 
 describe("gameboard", () => {
   const gameboard = new Gameboard()
@@ -16,4 +17,15 @@ describe("gameboard", () => {
       [null, null, null, null, null, null, null, null, null, null],
       [null, null, null, null, null, null, null, null, null, null],
     ]))
+
+  describe("placeShip function", () => {
+    test("vertical", () => {
+      const destroyer = new Ship(2)
+
+      gameboard.placeShip(destroyer, [0, 0], "vertical")
+      expect(gameboard.board[0][0]).toBe(destroyer)
+      expect(gameboard.board[1][0]).toBe(destroyer)
+      expect(gameboard.board[2][0]).not.toBe(destroyer)
+    })
+  })
 })
