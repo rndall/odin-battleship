@@ -13,6 +13,10 @@ class Gameboard {
       for (let i = y; i < endSquare; i++) {
         this.board[i][x] = ship
       }
+    } else if (orientation === "horizontal") {
+      for (let i = x; i < endSquare; i++) {
+        this.board[y][i] = ship
+      }
     }
   }
 }
