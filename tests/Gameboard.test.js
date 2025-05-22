@@ -28,6 +28,7 @@ describe("gameboard", () => {
       expect(gameboard.board[0][0]).toBe(destroyer)
       expect(gameboard.board[1][0]).toBe(destroyer)
       expect(gameboard.board[2][0]).not.toBe(destroyer)
+      expect(gameboard.ships).toContain(destroyer)
     })
 
     test("horizontal", () => {
@@ -37,6 +38,7 @@ describe("gameboard", () => {
       expect(gameboard.board[0][0]).toBe(destroyer)
       expect(gameboard.board[0][1]).toBe(destroyer)
       expect(gameboard.board[0][2]).not.toBe(destroyer)
+      expect(gameboard.ships).toContain(destroyer)
     })
   })
 
