@@ -3,6 +3,7 @@ class Gameboard {
     this.board = Array(10)
       .fill()
       .map(() => Array(10).fill(null))
+    this.missedAttacks = []
   }
 
   placeShip(ship, x, y, orientation) {
@@ -16,6 +17,15 @@ class Gameboard {
       for (let i = x; i < endSquare; i++) {
         this.board[y][i] = ship
       }
+    }
+  }
+
+  receiveAttack(x, y) {
+    const attackedSquare = this.board[y][x]
+    if (attackedSquare) {
+      attackedSquare.hit()
+    } else {
+      this.missedAttacks.push([x, y])
     }
   }
 }
