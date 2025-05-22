@@ -7,13 +7,15 @@ class Gameboard {
   }
 
   placeShip(ship, x, y, orientation) {
-    const endSquare = y + ship.length
+    let endSquare = ship.length
 
     if (orientation === "vertical") {
+      endSquare += y
       for (let i = y; i < endSquare; i++) {
         this.board[i][x] = ship
       }
     } else if (orientation === "horizontal") {
+      endSquare += x
       for (let i = x; i < endSquare; i++) {
         this.board[y][i] = ship
       }
