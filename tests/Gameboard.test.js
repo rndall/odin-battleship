@@ -61,4 +61,23 @@ describe("gameboard", () => {
       expect(gameboard.missedAttacks[0]).toEqual([2, 0])
     })
   })
+
+  describe("areAllShipsSunk function", () => {
+    let ship1, ship2
+
+    beforeEach(() => {
+      gameboard = new Gameboard()
+      ship1 = new Ship(1)
+      ship2 = new Ship(1)
+      gameboard.placeShip(ship1, 0, 0, "horizontal")
+      gameboard.placeShip(ship2, 1, 0, "horizontal")
+    })
+
+    test("return false if not all ships are sunk", () => {
+      gameboard.receiveAttack(0, 0)
+      expect(ship1.isSunk()).toBe(true)
+      expect(ship2.isSunk()).toBe(false)
+      expect(gameboard.areAllShipsSunk()).toBe(false)
+    })
+  })
 })
