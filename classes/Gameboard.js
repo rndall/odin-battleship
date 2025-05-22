@@ -37,6 +37,10 @@ class Gameboard {
       this.missedAttacks.push([x, y])
     }
   }
+
+  areAllShipsSunk() {
+    return this.ships.every((ship) => ship.isSunk())
+  }
 }
 
 module.exports = Gameboard
