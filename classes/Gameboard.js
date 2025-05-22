@@ -4,6 +4,7 @@ class Gameboard {
       .fill()
       .map(() => Array(10).fill(null))
     this.missedAttacks = []
+    this.ships = []
   }
 
   placeShip(ship, x, y, orientation) {
@@ -24,6 +25,8 @@ class Gameboard {
         this.board[y][i] = ship
       }
     }
+
+    this.ships.push(ship)
   }
 
   receiveAttack(x, y) {
