@@ -2,7 +2,9 @@ const Gameboard = require("../classes/Gameboard")
 const Ship = require("../classes/Ship")
 
 describe("gameboard", () => {
-  const gameboard = new Gameboard()
+  let gameboard = new Gameboard()
+
+  beforeEach(() => (gameboard = new Gameboard()))
 
   test("board", () =>
     expect(gameboard.board).toEqual([
@@ -39,9 +41,13 @@ describe("gameboard", () => {
   })
 
   describe("receiveAttack function", () => {
-    const destroyer = new Ship(2)
+    let destroyer
 
-    gameboard.placeShip(destroyer, 0, 0, "vertical")
+    beforeEach(() => {
+      gameboard = new Gameboard()
+      destroyer = new Ship(2)
+      gameboard.placeShip(destroyer, 0, 0, "vertical")
+    })
 
     test("hit", () => {
       gameboard.receiveAttack(0, 1)
@@ -50,7 +56,7 @@ describe("gameboard", () => {
 
     test("miss", () => {
       gameboard.receiveAttack(2, 0)
-      expect(gameboard.missedAttacks).toContain([2, 0])
+      expect(gameboard.missedAttacks[0]).toEqual([2, 0])
     })
   })
 })
