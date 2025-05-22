@@ -79,5 +79,13 @@ describe("gameboard", () => {
       expect(ship2.isSunk()).toBe(false)
       expect(gameboard.areAllShipsSunk()).toBe(false)
     })
+
+    test("return true if all ships are sunk", () => {
+      gameboard.receiveAttack(0, 0)
+      gameboard.receiveAttack(1, 0)
+      expect(ship1.isSunk()).toBe(true)
+      expect(ship2.isSunk()).toBe(true)
+      expect(gameboard.areAllShipsSunk()).toBe(true)
+    })
   })
 })
