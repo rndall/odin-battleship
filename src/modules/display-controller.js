@@ -3,6 +3,7 @@ import {
   realPlayer,
   computerPlayer,
   toggleActivePlayer,
+  computerAttack,
 } from "./game-controller"
 
 const grids = document.querySelectorAll(".board__squares")
@@ -51,6 +52,23 @@ opponentBoard.addEventListener("click", (e) => {
 
   square.classList.add("board__square--miss")
   toggleActivePlayer()
+
+  // Computer turn
+  computerAttack()
 })
 
-export { initGrids, showPlayerShips }
+const playerBoard = document.querySelector(".board--player .board__squares")
+const renderComputerAttack = (x, y, attack) => {
+  const square = playerBoard.children[y * 10 + x]
+
+  if (attack) {
+    square.classList.add("board__square--attack")
+    computerAttack()
+    return
+  }
+
+  square.classList.add("board__square--miss")
+  toggleActivePlayer()
+}
+
+export { initGrids, showPlayerShips, renderComputerAttack }

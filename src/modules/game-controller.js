@@ -1,5 +1,6 @@
 import Player from "../classes/Player"
 import Ship from "../classes/Ship"
+import { renderComputerAttack } from "./display-controller"
 
 const realPlayer = new Player("real")
 const computerPlayer = new Player("computer")
@@ -33,10 +34,31 @@ const populateBoards = () => {
   placeShips(computerPlayer)
 }
 
+const getRandomCoordinates = () => {
+  const x = Math.floor(Math.random() * 9)
+  const y = Math.floor(Math.random() * 9)
+
+  return [x, y]
+}
+
+const getComputerTurn = () => {
+  const coordinates = getRandomCoordinates()
+
+  if (!computerPlayer.board.missedAttacks.includes(coordinates))
+    return coordinates
+}
+
+const computerAttack = () => {
+  const [x, y] = getComputerTurn()
+  const computerAttack = realPlayer.board.receiveAttack(x, y)
+  renderComputerAttack(x, y, computerAttack)
+}
+
 export {
   realPlayer,
   computerPlayer,
   activePlayer,
   toggleActivePlayer,
   populateBoards,
+  computerAttack,
 }
