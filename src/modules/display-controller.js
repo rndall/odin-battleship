@@ -48,8 +48,14 @@ const renderPlayerAttack = (attack, target) => {
 
 opponentBoard.addEventListener("click", (e) => {
   const square = e.target
-  if (!square.classList.contains("board__square")) return
-  if (activePlayer === computerPlayer) return
+  if (
+    !square.classList.contains("board__square") ||
+    square.classList.length > 2 ||
+    activePlayer === computerPlayer
+  )
+    return
+
+  // TODO: Handle winner logic
 
   const hit = playerAttack(square.dataset.x, square.dataset.y, square)
   if (hit) return
