@@ -3,6 +3,7 @@ import {
   realPlayer,
   computerPlayer,
   toggleActivePlayer,
+  playerAttack,
   computerAttack,
 } from "./game-controller"
 
@@ -35,23 +36,23 @@ const showPlayerShips = () => {
 
 const opponentBoard = document.querySelector(".board--opponent")
 
+const renderPlayerAttack = (attack, target) => {
+  if (attack) {
+    target.classList.add("board__square--attack")
+    return true
+  }
+
+  target.classList.add("board__square--miss")
+  toggleActivePlayer()
+}
+
 opponentBoard.addEventListener("click", (e) => {
   const square = e.target
   if (!square.classList.contains("board__square")) return
   if (activePlayer === computerPlayer) return
 
-  const attack = computerPlayer.board.receiveAttack(
-    square.dataset.x,
-    square.dataset.y
-  )
-
-  if (attack) {
-    square.classList.add("board__square--attack")
-    return
-  }
-
-  square.classList.add("board__square--miss")
-  toggleActivePlayer()
+  const hit = playerAttack(square.dataset.x, square.dataset.y, square)
+  if (hit) return
 
   // Computer turn
   computerAttack()
@@ -71,4 +72,4 @@ const renderComputerAttack = (x, y, attack) => {
   toggleActivePlayer()
 }
 
-export { initGrids, showPlayerShips, renderComputerAttack }
+export { initGrids, showPlayerShips, renderComputerAttack, renderPlayerAttack }

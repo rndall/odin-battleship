@@ -1,6 +1,6 @@
 import Player from "../classes/Player"
 import Ship from "../classes/Ship"
-import { renderComputerAttack } from "./display-controller"
+import { renderComputerAttack, renderPlayerAttack } from "./display-controller"
 
 const realPlayer = new Player("real")
 const computerPlayer = new Player("computer")
@@ -34,6 +34,11 @@ const populateBoards = () => {
   placeShips(computerPlayer)
 }
 
+const playerAttack = (x, y, target) => {
+  const playerAttack = realPlayer.board.receiveAttack(x, y)
+  return renderPlayerAttack(playerAttack, target)
+}
+
 const getRandomCoordinates = () => {
   const x = Math.floor(Math.random() * 9)
   const y = Math.floor(Math.random() * 9)
@@ -60,5 +65,6 @@ export {
   activePlayer,
   toggleActivePlayer,
   populateBoards,
+  playerAttack,
   computerAttack,
 }
