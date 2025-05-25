@@ -17,8 +17,14 @@ header {
   padding-block: 2rem;
 }
 
-main {
-  padding: 3rem;
+.winner {
+  height: 42px;
+  margin-block: 2rem;
+  font-size: 1.75rem;
+}
+
+.winner--hidden {
+  visibility: hidden;
 }
 
 .boards {
