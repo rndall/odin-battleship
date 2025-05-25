@@ -1,4 +1,9 @@
-import { activePlayer, realPlayer, computerPlayer } from "./game-controller"
+import {
+  activePlayer,
+  realPlayer,
+  computerPlayer,
+  toggleActivePlayer,
+} from "./game-controller"
 
 const grids = document.querySelectorAll(".board__squares")
 
@@ -45,6 +50,7 @@ opponentBoard.addEventListener("click", (e) => {
   }
 
   square.classList.add("board__square--miss")
+  toggleActivePlayer()
 })
 
 export { initGrids, showPlayerShips }

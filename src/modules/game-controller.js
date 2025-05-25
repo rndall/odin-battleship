@@ -4,7 +4,11 @@ import Ship from "../classes/Ship"
 const realPlayer = new Player("real")
 const computerPlayer = new Player("computer")
 
-const activePlayer = realPlayer
+let activePlayer = realPlayer
+const toggleActivePlayer = () =>
+  activePlayer === realPlayer
+    ? (activePlayer = computerPlayer)
+    : (activePlayer = realPlayer)
 
 const placeShips = (player) => {
   const shipLengths = [2, 3, 3, 4, 5]
@@ -29,4 +33,10 @@ const populateBoards = () => {
   placeShips(computerPlayer)
 }
 
-export { realPlayer, computerPlayer, activePlayer, populateBoards }
+export {
+  realPlayer,
+  computerPlayer,
+  activePlayer,
+  toggleActivePlayer,
+  populateBoards,
+}
