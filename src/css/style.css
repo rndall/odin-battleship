@@ -65,9 +65,24 @@ main {
   background-color: var(--cerulean);
 }
 
-.board--opponent .board__square:hover {
+.board__square--opponent {
   cursor: pointer;
+}
+
+.board__square--opponent:hover {
+  border: 2px solid var(--red-pantone);
+}
+
+.board__square--attack {
+  border: 1px solid var(--berkeley-blue) !important;
   background-color: var(--red-pantone);
+  cursor: not-allowed;
+}
+
+.board__square--miss {
+  border: 1px solid var(--berkeley-blue) !important;
+  background-color: var(--honeydew);
+  cursor: not-allowed;
 }
 
 .board > p {

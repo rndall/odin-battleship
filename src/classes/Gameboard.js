@@ -33,9 +33,10 @@ export default class Gameboard {
     const attackedSquare = this.board[y][x]
     if (attackedSquare) {
       attackedSquare.hit()
-    } else {
-      this.missedAttacks.push([x, y])
+      return true
     }
+
+    this.missedAttacks.push([x, y])
   }
 
   areAllShipsSunk() {

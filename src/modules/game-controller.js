@@ -29,4 +29,4 @@ const populateBoards = () => {
   placeShips(computerPlayer)
 }
 
-export { activePlayer, populateBoards }
+export { realPlayer, computerPlayer, activePlayer, populateBoards }
