@@ -1,4 +1,4 @@
-const Player = require("../classes/Player")
+import Player from "../classes/Player"
 
 describe("player", () => {
   test("board", () => {

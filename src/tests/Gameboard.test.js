@@ -1,5 +1,5 @@
-const Gameboard = require("../classes/Gameboard")
-const Ship = require("../classes/Ship")
+import Gameboard from "../classes/Gameboard"
+import Ship from "../classes/Ship"
 
 describe("gameboard", () => {
   let gameboard = new Gameboard()

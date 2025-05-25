@@ -1,4 +1,4 @@
-class Gameboard {
+export default class Gameboard {
   constructor() {
     this.board = Array(10)
       .fill()
@@ -42,5 +42,3 @@ class Gameboard {
     return this.ships.every((ship) => ship.isSunk())
   }
 }
-
-module.exports = Gameboard

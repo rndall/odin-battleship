@@ -1,4 +1,4 @@
-const Ship = require("../classes/Ship")
+import Ship from "../classes/Ship"
 
 describe("ship", () => {
   const ship = new Ship(4)
