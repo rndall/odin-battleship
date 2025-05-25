@@ -57,7 +57,11 @@ main {
   width: 50px;
   aspect-ratio: 1;
   border: 1px solid var(--berkeley-blue);
+}
+
+.board--opponent .board__square:hover {
   cursor: pointer;
+  background-color: var(--red-pantone);
 }
 
 .board > p {
