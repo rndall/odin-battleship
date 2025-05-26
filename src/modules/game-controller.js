@@ -47,18 +47,20 @@ const getRandomCoordinates = () => {
 }
 
 const computerAttack = () => {
-  let coordinates
-  do {
-    coordinates = getRandomCoordinates()
-  } while (
-    realPlayer.board.receivedAttacks.some(
-      (innerArr) => JSON.stringify(innerArr) === JSON.stringify(coordinates)
+  setTimeout(() => {
+    let coordinates
+    do {
+      coordinates = getRandomCoordinates()
+    } while (
+      realPlayer.board.receivedAttacks.some(
+        (innerArr) => JSON.stringify(innerArr) === JSON.stringify(coordinates)
+      )
     )
-  )
 
-  const [x, y] = coordinates
-  const computerAttack = realPlayer.board.receiveAttack(x, y)
-  renderComputerAttack(x, y, computerAttack)
+    const [x, y] = coordinates
+    const computerAttack = realPlayer.board.receiveAttack(x, y)
+    renderComputerAttack(x, y, computerAttack)
+  }, 200)
 }
 
 export {
