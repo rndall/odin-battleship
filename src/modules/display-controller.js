@@ -1,10 +1,11 @@
 import {
-  activePlayer,
+  getActivePlayer,
   realPlayer,
   computerPlayer,
   toggleActivePlayer,
   playerAttack,
   computerAttack,
+  getWinner,
 } from "./game-controller"
 
 const grids = document.querySelectorAll(".board__squares")
@@ -51,11 +52,10 @@ opponentBoard.addEventListener("click", (e) => {
   if (
     !square.classList.contains("board__square") ||
     square.classList.length > 2 ||
-    activePlayer === computerPlayer
+    getActivePlayer() === computerPlayer ||
+    getWinner()
   )
     return
-
-  // TODO: Handle winner logic
 
   const hit = playerAttack(square.dataset.x, square.dataset.y, square)
   if (hit) return
@@ -63,6 +63,16 @@ opponentBoard.addEventListener("click", (e) => {
   // Computer turn
   computerAttack()
 })
+
+const resultsEl = document.querySelector(".game-results")
+const winnerEl = document.querySelector(".winner")
+const displayWinner = () => {
+  const winner = getWinner()
+  if (winner) {
+    winnerEl.textContent = winner.type === "real" ? "You win!" : "You lost."
+    resultsEl.classList.remove("game-results--hidden")
+  }
+}
 
 const playerBoard = document.querySelector(".board--player .board__squares")
 const renderComputerAttack = (x, y, attack) => {
@@ -78,4 +88,10 @@ const renderComputerAttack = (x, y, attack) => {
   toggleActivePlayer()
 }
 
-export { initGrids, showPlayerShips, renderComputerAttack, renderPlayerAttack }
+export {
+  initGrids,
+  showPlayerShips,
+  renderComputerAttack,
+  renderPlayerAttack,
+  displayWinner,
+}

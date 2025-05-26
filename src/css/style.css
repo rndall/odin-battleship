@@ -23,7 +23,7 @@ header {
   font-size: 1.75rem;
 }
 
-.winner--hidden {
+.game-results--hidden {
   visibility: hidden;
 }
 

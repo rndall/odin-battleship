@@ -1,15 +1,27 @@
 import Player from "../classes/Player"
 import Ship from "../classes/Ship"
-import { renderComputerAttack, renderPlayerAttack } from "./display-controller"
+import {
+  renderComputerAttack,
+  renderPlayerAttack,
+  displayWinner,
+} from "./display-controller"
 
 const realPlayer = new Player("real")
 const computerPlayer = new Player("computer")
 
 let activePlayer = realPlayer
-const toggleActivePlayer = () =>
+const getActivePlayer = () => activePlayer
+const toggleActivePlayer = () => {
   activePlayer === realPlayer
     ? (activePlayer = computerPlayer)
     : (activePlayer = realPlayer)
+
+  playerToBeAttacked === realPlayer
+    ? (playerToBeAttacked = computerPlayer)
+    : (playerToBeAttacked = realPlayer)
+}
+
+let playerToBeAttacked = computerPlayer
 
 const placeShips = (player) => {
   const shipLengths = [2, 3, 3, 4, 5]
@@ -36,6 +48,7 @@ const populateBoards = () => {
 
 const playerAttack = (x, y, target) => {
   const playerAttack = computerPlayer.board.receiveAttack(x, y)
+  displayWinner()
   return renderPlayerAttack(playerAttack, target)
 }
 
@@ -49,6 +62,11 @@ const getRandomCoordinates = () => {
 const computerAttack = () => {
   setTimeout(() => {
     let coordinates
+    if (getWinner()) {
+      displayWinner()
+      return
+    }
+
     do {
       coordinates = getRandomCoordinates()
     } while (
@@ -63,12 +81,17 @@ const computerAttack = () => {
   }, 200)
 }
 
+const getWinner = () => {
+  if (playerToBeAttacked.board.areAllShipsSunk()) return activePlayer
+}
+
 export {
   realPlayer,
   computerPlayer,
-  activePlayer,
+  getActivePlayer,
   toggleActivePlayer,
   populateBoards,
   playerAttack,
   computerAttack,
+  getWinner,
 }
