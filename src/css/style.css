@@ -1,6 +1,7 @@
 :root {
   --red-pantone: #e63946ff;
   --honeydew: #f1faeeff;
+  --honeydew-hover: #d8e4d7;
   --non-photo-blue: #a8dadcff;
   --cerulean: #457b9dff;
   --berkeley-blue: #1d3557ff;
@@ -99,6 +100,18 @@ header {
 .board > .btn {
   grid-column: 2 / -1;
   margin-inline: auto;
+}
+
+.btn {
+  background-color: var(--honeydew);
+  border: none;
+  padding: 8px 24px;
+  border-radius: 99999px;
+}
+
+.btn:hover {
+  background-color: var(--honeydew-hover);
+  cursor: pointer;
 }
 
 .btn--hidden {
