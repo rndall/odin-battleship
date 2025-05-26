@@ -46,15 +46,17 @@ const getRandomCoordinates = () => {
   return [x, y]
 }
 
-const getComputerTurn = () => {
-  const coordinates = getRandomCoordinates()
-
-  if (!computerPlayer.board.missedAttacks.includes(coordinates))
-    return coordinates
-}
-
 const computerAttack = () => {
-  const [x, y] = getComputerTurn()
+  let coordinates
+  do {
+    coordinates = getRandomCoordinates()
+  } while (
+    realPlayer.board.receivedAttacks.some(
+      (innerArr) => JSON.stringify(innerArr) === JSON.stringify(coordinates)
+    )
+  )
+
+  const [x, y] = coordinates
   const computerAttack = realPlayer.board.receiveAttack(x, y)
   renderComputerAttack(x, y, computerAttack)
 }

@@ -4,6 +4,7 @@ export default class Gameboard {
       .fill()
       .map(() => Array(10).fill(null))
     this.missedAttacks = []
+    this.receivedAttacks = []
     this.ships = []
   }
 
@@ -31,6 +32,9 @@ export default class Gameboard {
 
   receiveAttack(x, y) {
     const attackedSquare = this.board[y][x]
+
+    this.receivedAttacks.push([x, y])
+
     if (attackedSquare) {
       attackedSquare.hit()
       return true
