@@ -7,6 +7,7 @@ import {
   displayWinner,
   initGrids,
   showPlayerShips,
+  hideRandomizeBtn,
 } from "./display-controller"
 
 const realPlayer = new Player("real")
@@ -57,6 +58,7 @@ const populateBoards = () => {
 }
 
 const playerAttack = (x, y, target) => {
+  hideRandomizeBtn()
   const playerAttack = computerPlayer.board.receiveAttack(x, y)
   displayWinner()
   return renderPlayerAttack(playerAttack, target)

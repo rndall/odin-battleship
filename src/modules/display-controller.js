@@ -80,6 +80,7 @@ const restartBtn = document.querySelector("#play-again")
 const handleRestartGame = () => {
   resultsEl.classList.add("game-results--hidden")
   startGame()
+  showRandomizeBtn()
 }
 restartBtn.addEventListener("click", handleRestartGame)
 
@@ -97,10 +98,16 @@ const renderComputerAttack = (x, y, attack) => {
   toggleActivePlayer()
 }
 
+const randomizeBtn = document.querySelector("#randomize")
+randomizeBtn.addEventListener("click", () => startGame())
+const hideRandomizeBtn = () => randomizeBtn.classList.add("btn--hidden")
+const showRandomizeBtn = () => randomizeBtn.classList.remove("btn--hidden")
+
 export {
   initGrids,
   showPlayerShips,
   renderComputerAttack,
   renderPlayerAttack,
   displayWinner,
+  hideRandomizeBtn,
 }

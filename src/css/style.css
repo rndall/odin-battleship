@@ -95,3 +95,12 @@ header {
   grid-column: 2 / -1;
   margin-block: 1rem;
 }
+
+.board > .btn {
+  grid-column: 2 / -1;
+  margin-inline: auto;
+}
+
+.btn--hidden {
+  visibility: hidden;
+}
