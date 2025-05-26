@@ -6,12 +6,14 @@ import {
   playerAttack,
   computerAttack,
   getWinner,
+  startGame,
 } from "./game-controller"
 
 const grids = document.querySelectorAll(".board__squares")
 
 const initGrids = () => {
   for (const [index, grid] of grids.entries()) {
+    grid.textContent = ""
     for (let y = 0; y < 10; y++) {
       for (let x = 0; x < 10; x++) {
         const gridSquare = document.createElement("div")
@@ -73,6 +75,13 @@ const displayWinner = () => {
     resultsEl.classList.remove("game-results--hidden")
   }
 }
+
+const restartBtn = document.querySelector("#play-again")
+const handleRestartGame = () => {
+  resultsEl.classList.add("game-results--hidden")
+  startGame()
+}
+restartBtn.addEventListener("click", handleRestartGame)
 
 const playerBoard = document.querySelector(".board--player .board__squares")
 const renderComputerAttack = (x, y, attack) => {

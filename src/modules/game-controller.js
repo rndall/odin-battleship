@@ -1,9 +1,12 @@
+import Gameboard from "../classes/Gameboard"
 import Player from "../classes/Player"
 import Ship from "../classes/Ship"
 import {
   renderComputerAttack,
   renderPlayerAttack,
   displayWinner,
+  initGrids,
+  showPlayerShips,
 } from "./display-controller"
 
 const realPlayer = new Player("real")
@@ -85,6 +88,18 @@ const getWinner = () => {
   if (playerToBeAttacked.board.areAllShipsSunk()) return activePlayer
 }
 
+const startGame = () => {
+  activePlayer = realPlayer
+  playerToBeAttacked = computerPlayer
+
+  activePlayer.board = new Gameboard()
+  playerToBeAttacked.board = new Gameboard()
+
+  populateBoards()
+  initGrids()
+  showPlayerShips()
+}
+
 export {
   realPlayer,
   computerPlayer,
@@ -94,4 +109,5 @@ export {
   playerAttack,
   computerAttack,
   getWinner,
+  startGame,
 }
