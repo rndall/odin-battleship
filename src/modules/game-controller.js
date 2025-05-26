@@ -35,7 +35,7 @@ const populateBoards = () => {
 }
 
 const playerAttack = (x, y, target) => {
-  const playerAttack = realPlayer.board.receiveAttack(x, y)
+  const playerAttack = computerPlayer.board.receiveAttack(x, y)
   return renderPlayerAttack(playerAttack, target)
 }
 
