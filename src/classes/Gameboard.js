@@ -12,19 +12,25 @@ export default class Gameboard {
     let endSquare = ship.length
     const boardSize = 10
     const err = new Error("Cannot place ship outside the grid boundaries.")
+    const shipAlreadyPlacedErr = new Error("A ship is already placed here.")
+    let coordinates
 
     if (orientation === "vertical") {
+      coordinates = Array.from({ length: ship.length }, (_, index) => index + y)
       endSquare += y
       if (endSquare > boardSize) throw err
       for (let i = y; i < endSquare; i++) {
-        this.board[i][x] = ship
+        if (this.board[i][x]) throw shipAlreadyPlacedErr
       }
+      for (const y of coordinates) this.board[y][x] = ship
     } else if (orientation === "horizontal") {
+      coordinates = Array.from({ length: ship.length }, (_, index) => index + x)
       endSquare += x
       if (endSquare > boardSize) throw err
       for (let i = x; i < endSquare; i++) {
-        this.board[y][i] = ship
+        if (this.board[y][i]) throw shipAlreadyPlacedErr
       }
+      for (const x of coordinates) this.board[y][x] = ship
     }
 
     this.ships.push(ship)

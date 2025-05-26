@@ -26,27 +26,34 @@ const toggleActivePlayer = () => {
 
 let playerToBeAttacked = computerPlayer
 
-const placeShips = (player) => {
+const getRandomShipPlacement = () => {
+  const [x, y] = getRandomCoordinates()
+  const orientation =
+    Math.floor(Math.random() * 2) === 1 ? "vertical" : "horizontal"
+
+  return { x, y, orientation }
+}
+
+const placeShipsRandomly = (player) => {
   const shipLengths = [2, 3, 3, 4, 5]
-  const coordinates = [
-    { x: 0, y: 0, orientation: "horizontal" },
-    { x: 0, y: 1, orientation: "horizontal" },
-    { x: 0, y: 2, orientation: "horizontal" },
-    { x: 0, y: 3, orientation: "horizontal" },
-    { x: 0, y: 4, orientation: "horizontal" },
-  ]
 
-  for (let i = 0; i < 5; i++) {
-    const { x, y, orientation } = coordinates[i]
-
-    const ship = new Ship(shipLengths[i])
-    player.board.placeShip(ship, x, y, orientation)
+  for (const shipLength of shipLengths) {
+    const ship = new Ship(shipLength)
+    while (true) {
+      try {
+        const { x, y, orientation } = getRandomShipPlacement()
+        player.board.placeShip(ship, x, y, orientation)
+        break
+      } catch (err) {
+        console.error(err)
+      }
+    }
   }
 }
 
 const populateBoards = () => {
-  placeShips(realPlayer)
-  placeShips(computerPlayer)
+  placeShipsRandomly(realPlayer)
+  placeShipsRandomly(computerPlayer)
 }
 
 const playerAttack = (x, y, target) => {
