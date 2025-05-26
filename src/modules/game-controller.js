@@ -90,7 +90,7 @@ const computerAttack = () => {
     const [x, y] = coordinates
     const computerAttack = realPlayer.board.receiveAttack(x, y)
     renderComputerAttack(x, y, computerAttack)
-  }, 200)
+  }, 500)
 }
 
 const getWinner = () => {
